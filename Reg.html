@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
+    <title>Document</title>
+    <style>
+        body{
+background-color: wheat;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Registration Form</h2>
+        <form action="#">
+            <div class="form-group">
+                <label for="userrole" class="btn btn-primary">User Role:</label>
+            
+
+                <select name="userrole" class="btn btn-primary" id="userrole">
+                    <option >select</option>
+                    <option>User</option>
+                    <option>Admin</option>
+                </select>
+    </div>
+
+
+
+            <div class="form-group">
+                <label for="name">User Name:</label>
+                <input type="text" class="form-control" id="name" placeholder="enter username">
+                <p class="text-danger weight-bold"></p>
+            </div>
+            <div class="form-group">
+                <label for="mobilenumber">Mobile Number:</label>
+                <input type="number" class="form-control" id="mno" placeholder="enter mobilenumber">
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="text" class="form-control" id="email" placeholder="enter email">
+            </div>
+            <div class="form-group">
+                <label for="pwd">Password:</label>
+                <input type="password" class="form-control" id="psw" placeholder="enter password">
+            </div>
+            <div class="form-group">
+                <label for="confirmpassword">Confirm Password:</label>
+                <input type="password" class="form-control" id="conpass" placeholder="enter confirmpassword">
+            </div>
+
+           <button type="submit" class="btn btn-primary" onclick="saveData()" id="save-btn">Register</button>
+           <a href="login.html">Go Login</a>
+
+        </form>
+    </div>
+</body>
+
+<script>
+    function saveData(){
+        let userrole,name,mno,email,filter,psw,conpass;
+        //id=document.getElementById("id").value;
+        userrole=document.getElementById("userrole").value;
+        name=document.getElementById("name").value;
+        mno=document.getElementById("mno",mno).value;
+        email=document.getElementById("email").value;
+        filter=/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+        psw=document.getElementById("psw").value;
+        conpass=document.getElementById("conpass",conpass).value;
+
+
+
+if(name == "" )
+{
+alert("username cannot be blank");
+//name.style.borderColor="red";
+return false;
+}
+
+
+
+if(mno == ""){
+alert("mobile number cannot be blank cannot be blank");
+//mno.style.borderColor="red";
+
+return false;
+}
+
+else if(mno.length<10 || mno.length>10)
+    {
+alert("invalid mobile");
+
+return false;
+    }
+    if(email =="")
+  {
+   alert("please enter email");
+  }
+  
+  else if(!filter.test(email))
+  {
+   alert("Enter valid email id.");
+  }
+  else if(psw=="")
+  {
+         alert("enter the password");
+  }
+  else if(psw.length < 6 || psw.length > 6)
+  {
+   alert("Password min and max length is 6.");
+  }
+  else if(conpass == "")
+  {
+alert("confirm password cannot be blank");
+return false;
+  }
+
+
+else if(psw!=conpass){
+alert("password are not match");
+return false;
+}
+else{
+    alert('Register Successfully');
+    window.location="login.html"
+   
+}
+
+       let user_records=new Array();
+        user_records=JSON.parse(localStorage.getItem("users"))?JSON.parse(localStorage.getItem("users")):[]
+        user_records.push({
+            //"id":id,
+            "userrole":userrole,
+            "name":name,
+            "mno":mno,
+            "email":email,
+            "psw":psw,
+            "conpass":conpass
+        })
+        localStorage.setItem("users",JSON.stringify(user_records));
+
+//---------------------------------------------------------------------------*/
+
+
+/*if(name ==""){
+document.getElementById("message").innerHTML="***please fill username";
+return false;
+}*/
+
+
+
+
+
+
+
+
+
+
+    }
+    </script>
+
+
+
+</html>
